@@ -1,4 +1,5 @@
 <style>
+
     table, th, td {
         border: 1px solid black;
     }
@@ -11,8 +12,17 @@
     .original-text {
         background-color: grey;
     }
-</style>
 
+     .answer {
+        background-color: lime;
+    }
+
+</style>
+<head>
+    <title>Levenshtein Distance Calculator</title>
+</head>
+
+<body>
 <h1>Levenshtein Distance Calculator</h1>
 
 <form action="{% url 'index' %}" method="post">
@@ -22,10 +32,11 @@
     <input type="submit" value="Calculate Distance"/>
 </form>
 
-{% if result %}
+{% if result is not None %}
+
 {% load index %}
 <h2>The distance between &quot;{{ source }}&quot; and &quot;{{ target }}&quot; is {{ result }}</h2>
-<h3>Calculation matrix:</h3>
+<h3>Calculation matrix (result is the lowest right number):</h3>
 <table>
     <tr>
         <td></td>
@@ -36,15 +47,20 @@
     </tr>
     {% for row in matrix %}
     <tr>
-        {% if row.0 == 0 %}
+        {% if forloop.counter0 == 0 %}
         <td></td>
         {% else %}
-        <td class="original-text">{{ source |index:row.0}}</td>
+        <td class="original-text">{{ source |index:forloop.counter0}}</td>
         {% endif %}
         {% for col in row %}
+        {% if forloop.last and forloop.parentloop.last %}
+        <td class="answer">{{ col }}</td>
+        {% else %}
         <td>{{ col }}</td>
+        {% endif %}
         {% endfor %}
     </tr>
     {% endfor %}
 </table>
 {% endif %}
+</body>

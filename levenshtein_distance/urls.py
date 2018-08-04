@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import MainView
+
+from .views import LevenshteinDistanceView
 
 urlpatterns = [
-    # path('', views.index, name='index'),
-    path('', MainView.as_view(), name='index')
-    # path('submission', views.submission, name='submission'),
+    path('', LevenshteinDistanceView.as_view(), name='index')
 ]

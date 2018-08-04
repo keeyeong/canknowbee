@@ -1,8 +1,8 @@
-def calculate(source, target):
-    return full_matrix(source, len(source), target, len(target))
+def calculate_distance_with_matrix(source, target):
+    return calculate(source, len(source), target, len(target))
 
 
-def full_matrix(source, source_size, target, target_size):
+def calculate(source, source_size, target, target_size):
     # Initialize "2d matrix" with 0
     # One row/column extra for the length of source and target string (maximum possible distance)
     result = [[0 for x in range(target_size + 1)] for y in range(source_size + 1)]
