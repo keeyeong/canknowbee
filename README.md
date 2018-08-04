@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Levenshtein_distance
 ## To Run
 
 - Clone the repository
-- Make sure the packages in `requirements.txt` are met, either by `virtualenv` or otherwise
+- Make sure the packages in `requirements.txt` are met, either in a `virtualenv` or otherwise, from project root with `pip install -r requirements.txt`
 - Start the Django server with `python manage.py runserver` from project root
 - Point your browser to the root of the server, defaults to `localhost:8000`
 
