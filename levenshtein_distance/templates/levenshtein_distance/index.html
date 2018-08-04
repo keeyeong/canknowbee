@@ -10,12 +10,13 @@
     }
 
     .original-text {
-        background-color: grey;
+        background-color: #D3D3D3;
     }
 
      .answer {
         background-color: lime;
     }
+
 
 </style>
 <head>
@@ -34,7 +35,7 @@
 
 {% if result is not None %}
 
-{% load index %}
+{% load index_minus_one %}
 <h2>The distance between &quot;{{ source }}&quot; and &quot;{{ target }}&quot; is {{ result }}</h2>
 <h3>Calculation matrix (result is the lowest right number):</h3>
 <table>
@@ -50,7 +51,7 @@
         {% if forloop.counter0 == 0 %}
         <td></td>
         {% else %}
-        <td class="original-text">{{ source |index:forloop.counter0}}</td>
+        <td class="original-text">{{ source |index_minus_one:forloop.counter0}}</td>
         {% endif %}
         {% for col in row %}
         {% if forloop.last and forloop.parentloop.last %}
