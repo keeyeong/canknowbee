@@ -1,12 +1,50 @@
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    .original-text {
+        background-color: grey;
+    }
+</style>
+
 <h1>Levenshtein Distance Calculator</h1>
 
 <form action="{% url 'index' %}" method="post">
     {% csrf_token %}
     <input type="text" name="source"/>
     <input type="text" name="target"/>
-    <input type="submit" value="Calculate Distance" />
+    <input type="submit" value="Calculate Distance"/>
 </form>
 
 {% if result %}
+{% load index %}
 <h2>The distance between &quot;{{ source }}&quot; and &quot;{{ target }}&quot; is : {{ result }}</h2>
+<h3>Calculation matrix:</h3>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        {% for target_char in target %}
+        <td class="original-text">{{ target_char }}</td>
+        {% endfor %}
+    </tr>
+    {% for row in matrix %}
+    <tr>
+        {% if row.0 == 0 %}
+        <td></td>
+        {% else %}
+        <td class="original-text">{{ source |index:row.0}}</td>
+        {% endif %}
+        {% for col in row %}
+        <td>{{ col }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
 {% endif %}

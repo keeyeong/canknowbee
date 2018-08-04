@@ -17,9 +17,11 @@ class MainView(TemplateView):
         return render(request, 'main/index.html', context)
 
     def post(self, request):
+        result = calculate(request.POST['source'], request.POST['target'])
         context = {
             'source': request.POST['source'],
             'target': request.POST['target'],
-            'result': calculate(request.POST['source'], request.POST['target'])
+            'result': result[0],
+            'matrix': result[1]
         }
         return render(request, 'main/index.html', context)
