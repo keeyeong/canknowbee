@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 from .service import calculate
 
@@ -38,3 +38,19 @@ class ServiceTestCase(TestCase):
 
     def get_distance(self, source, target):
         return calculate(source, target)[0]
+
+
+class WebTest(TestCase):
+    web_client = Client()
+
+    def test_get(self):
+        response = self.web_client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['result'], None)
+
+    def test_post(self):
+        response = self.web_client.post('/', {'source': 'woman', 'target': 'man'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['result'], 2)
+        self.assertEqual(response.context['source'], 'woman')
+        self.assertEqual(response.context['target'], 'man')
