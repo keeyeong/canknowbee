@@ -1,0 +1,12 @@
+<h1>Levenshtein Distance Calculator</h1>
+
+<form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="source"/>
+    <input type="text" name="target"/>
+    <input type="submit" value="Calculate Distance" />
+</form>
+
+{% if result %}
+<h2>The answer is : {% result %}</h2>
+{% endif %}

@@ -14,13 +14,13 @@ class MainView(TemplateView):
 
     def get(self, request):
         context = {
-            'results': []
+            'result': None
         }
         return render(request, 'main/index.html', context)
 
     def post(self, request):
-        tweets = query.query_single_page(request.POST['content'])[0]
+
         context = {
-            'results': tweets
+            'result': tweets
         }
         return render(request, 'main/index.html', context)
