@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class MainConfig(AppConfig):
+class LevenshteinDistanceConfig(AppConfig):
     name = 'levenshtein_distance'

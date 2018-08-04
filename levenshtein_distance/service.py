@@ -1,8 +1,23 @@
+"""
+Service to calculate Levenshtein Distance
+"""
+
+
 def calculate_distance_with_matrix(source, target):
+    """Wrapper to the main calculate function"""
     return calculate(source, len(source), target, len(target))
 
 
 def calculate(source, source_size, target, target_size):
+    """
+    Calculates the Levenshtein Distance between 2 strings, referred to as source and target
+    Also returns the 2 dimensional matrix used to obtain the result.
+
+    Based on the dynamic programming algorithm described in
+
+    https://en.wikipedia.org/wiki/Levenshtein_distance
+    """
+
     # Initialize "2d matrix" with 0
     # One row/column extra for the length of source and target string (maximum possible distance)
     result = [[0 for x in range(target_size + 1)] for y in range(source_size + 1)]
